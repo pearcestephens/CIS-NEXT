@@ -1,0 +1,73 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Cache and temporary files
+cache/
+var/
+storage/app/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+storage/logs/
+
+# Logs
+logs/
+*.log
+error_log
+access_log
+
+# Node modules and package files
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Backup files
+backups/
+*.bak
+*.backup
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+session.txt
+cookies.txt
+newsession.txt
+
+# Debug and test files (keeping some important ones)
+debug_*.php
+*_debug.php
+test_*.php
+*_test.php
+
+# Reports and cleanup files
+cleanup_report.json
+*.json.bak
+
+# Compiled assets
+public/build/
+public/hot
+public/storage
+
+# Vendor dependencies
+vendor/
+
+# Configuration cache
+bootstrap/cache/

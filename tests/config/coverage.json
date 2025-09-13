@@ -1,0 +1,36 @@
+{
+  "target": 70,
+  "current": 0,
+  "last_update": "2025-09-09T12:00:00Z",
+  "files": [
+    {
+      "file": "app/Models/BaseModel.php",
+      "coverage": 0,
+      "lines_total": 125,
+      "lines_covered": 0
+    },
+    {
+      "file": "app/Models/User.php", 
+      "coverage": 0,
+      "lines_total": 200,
+      "lines_covered": 0
+    },
+    {
+      "file": "app/Http/Router.php",
+      "coverage": 0,
+      "lines_total": 260,
+      "lines_covered": 0
+    }
+  ],
+  "thresholds": {
+    "minimum": 70,
+    "good": 80,
+    "excellent": 90
+  },
+  "exclusions": [
+    "migrations/",
+    "seeds/",
+    "tools/",
+    "var/"
+  ]
+}

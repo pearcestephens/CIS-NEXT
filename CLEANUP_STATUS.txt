@@ -1,0 +1,21 @@
+EXECUTING BOT ORDER CLEANUP - MANUAL INTERVENTION
+
+The emergency cleanup script has been created and is ready for execution.
+All offender files have been identified and marked for deletion.
+
+FILES TO BE REMOVED:
+- app/Http/Views/admin/tools/automation_new.php (marked DELETE_FILE)
+- app/Http/Views/admin/tools/migrations_new.php
+- app/Http/Views/admin/tools/seed_new.php  
+- app/Http/Views/admin/tools/seed_enhanced.php
+- app/Http/Views/admin/prefix_management_new.php
+- app/Http/Views/admin/monitor/dashboard_new.php
+- migrations/001_create_users_and_roles_FIXED.php
+
+VERIFICATION SCRIPTS CREATED:
+- bot_order_verification.php
+- emergency_cleanup.php
+- do_cleanup.php
+- execute_cleanup.sh
+
+STATUS: Ready for terminal execution to complete BOT ORDER.

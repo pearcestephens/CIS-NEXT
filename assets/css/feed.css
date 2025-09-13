@@ -1,0 +1,130 @@
+/* CIS Feed Timeline Styles */
+:root {
+    --feed-primary: #007bff;
+    --feed-secondary: #6c757d;
+    --feed-success: #28a745;
+    --feed-warning: #ffc107;
+    --feed-danger: #dc3545;
+    --feed-info: #17a2b8;
+    --feed-light: #f8f9fa;
+    --feed-dark: #343a40;
+}
+
+/* Font Awesome Fallback - Hide ugly squares if fonts don't load */
+.fa, .fas, .far, .fab, .fal {
+    font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free', 'Font Awesome 5 Pro', sans-serif !important;
+}
+
+/* If Font Awesome fails to load, show text fallbacks */
+.fa-home:before { content: "🏠"; }
+.fa-chart-bar:before { content: "📊"; }
+.fa-users:before { content: "👥"; }
+.fa-cog:before { content: "⚙️"; }
+.fa-sign-out-alt:before { content: "🚪"; }
+.fa-filter:before { content: "🔍"; }
+.fa-calendar:before { content: "📅"; }
+.fa-clock:before { content: "🕐"; }
+
+/* Timeline Container */
+.timeline-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Event Cards */
+.event-card {
+    border-left: 4px solid #dee2e6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+}
+
+.event-card.severity-info {
+    border-left-color: var(--feed-info);
+}
+
+.event-card.severity-warn {
+    border-left-color: var(--feed-warning);
+}
+
+.event-card.severity-error {
+    border-left-color: var(--feed-danger);
+}
+
+.event-card.severity-critical {
+    border-left-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+/* Event Metadata */
+.event-meta {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.event-meta .badge {
+    font-size: 0.75rem;
+}
+
+/* Filters */
+.filter-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-group {
+    margin-bottom: 0.5rem;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Loading States */
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+.loading-spinner.active {
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline-container {
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+    
+    .filter-container {
+        margin: 0 -15px 1rem;
+        border-radius: 0;
+    }
+    
+    .event-card {
+        border-left-width: 3px;
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}

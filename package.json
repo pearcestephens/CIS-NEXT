@@ -1,0 +1,29 @@
+{
+  "name": "public_html",
+  "version": "1.0.0",
+  "description": "## System Status: OPERATIONAL ✅",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "ui-fixer": "bash tools/ui-bot/run-pipeline.sh",
+    "lighthouse": "lhci autorun",
+    "check-links": "bash tools/ui-bot/check-links.sh",
+    "autopatcher": "php tools/ui-bot/autopatcher.php"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.55.0",
+    "linkinator": "^6.1.4",
+    "typescript": "^5.9.2"
+  }
+}

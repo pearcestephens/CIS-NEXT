@@ -1,0 +1,140 @@
+{
+  "generated_at": "2025-09-09T12:00:00Z",
+  "version": "2.0.0",
+  "repository_scan": {
+    "total_files": 47,
+    "total_directories": 15,
+    "last_scan": "2025-09-09T12:00:00Z"
+  },
+  "files": [
+    {
+      "path": "index.php",
+      "type": "entry_point",
+      "size": 520,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Application entry point - bootstraps CIS via App\\Shared\\Bootstrap",
+      "TODO_risks": []
+    },
+    {
+      "path": "app/Shared/Bootstrap.php",
+      "type": "core",
+      "size": 3200,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Application bootstrap - autoloader, config, DB, error handling, session security",
+      "TODO_risks": ["session security could be enhanced with Redis backend"]
+    },
+    {
+      "path": "app/Http/Router.php",
+      "type": "routing",
+      "size": 6900,
+      "last_modified": "2025-09-09",
+      "brief_summary": "HTTP router with pattern matching, middleware support, named routes",
+      "TODO_risks": ["middleware pipeline needs standardization"]
+    },
+    {
+      "path": "routes/web.php",
+      "type": "routes",
+      "size": 4200,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Web routes - admin interface, public routes, asset serving",
+      "TODO_risks": ["asset routing should be handled by web server"]
+    },
+    {
+      "path": "routes/api.php", 
+      "type": "routes",
+      "size": 2800,
+      "last_modified": "2025-09-09",
+      "brief_summary": "API routes - REST endpoints with versioning and groups",
+      "TODO_risks": ["missing rate limiting middleware"]
+    },
+    {
+      "path": "app/Models/BaseModel.php",
+      "type": "model",
+      "size": 3100,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Base model with database operations and table prefix support",
+      "TODO_risks": ["needs query builder integration"]
+    },
+    {
+      "path": "app/Models/User.php",
+      "type": "model", 
+      "size": 2800,
+      "last_modified": "2025-09-09",
+      "brief_summary": "User model with authentication and permissions",
+      "TODO_risks": ["password hashing needs bcrypt upgrade"]
+    },
+    {
+      "path": "app/Models/Permission.php",
+      "type": "model",
+      "size": 3500,
+      "last_modified": "2025-09-09", 
+      "brief_summary": "Permission model for RBAC operations",
+      "TODO_risks": ["permission caching needed for performance"]
+    },
+    {
+      "path": "app/Models/Feed.php",
+      "type": "model",
+      "size": 2200,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Feed model for activity timeline and events",
+      "TODO_risks": ["needs event clustering optimization"]
+    },
+    {
+      "path": "cis_full_schema.sql",
+      "type": "database",
+      "size": 95000,
+      "last_modified": "2025-09-09",
+      "brief_summary": "Complete database schema with 180+ tables for comprehensive ERP",
+      "TODO_risks": ["large schema needs modular migration approach"]
+    }
+  ],
+  "symbols": [
+    {
+      "fqcn": "App\\Shared\\Bootstrap",
+      "file": "app/Shared/Bootstrap.php",
+      "responsibilities": ["application initialization", "autoloader", "error handling", "session security"],
+      "dependencies": ["Config", "Logger", "Database"]
+    },
+    {
+      "fqcn": "App\\Http\\Router",
+      "file": "app/Http/Router.php", 
+      "responsibilities": ["route registration", "request dispatch", "middleware pipeline"],
+      "dependencies": ["Logger"]
+    },
+    {
+      "fqcn": "App\\Models\\BaseModel",
+      "file": "app/Models/BaseModel.php",
+      "responsibilities": ["database abstraction", "table prefix handling", "common CRUD operations"],
+      "dependencies": ["Database"]
+    },
+    {
+      "fqcn": "App\\Models\\User",
+      "file": "app/Models/User.php",
+      "responsibilities": ["user authentication", "session management", "RBAC integration"],
+      "dependencies": ["BaseModel", "Logger"]
+    }
+  ],
+  "endpoints": [
+    {"method": "GET", "path": "/", "controller": "HomeController@index", "middleware": [], "auth": false},
+    {"method": "GET", "path": "/login", "controller": "AuthController@showLogin", "middleware": [], "auth": false},
+    {"method": "POST", "path": "/login", "controller": "AuthController@login", "middleware": ["csrf"], "auth": false},
+    {"method": "GET", "path": "/admin", "controller": "DashboardController@index", "middleware": ["auth", "rbac"], "auth": true},
+    {"method": "GET", "path": "/health", "controller": "HealthController@health", "middleware": [], "auth": false},
+    {"method": "GET", "path": "/ready", "controller": "HealthController@ready", "middleware": [], "auth": false},
+    {"method": "GET", "path": "/api/health", "controller": "Api\\HealthController@health", "middleware": [], "auth": false}
+  ],
+  "database": [
+    {"table": "auth_users", "columns": ["id", "email", "username", "password_hash", "is_active", "created_at"], "keys": ["PRIMARY(id)", "UNIQUE(email)"], "fks": [], "approx_relations": "1:N with auth_user_roles"},
+    {"table": "auth_roles", "columns": ["id", "role_name", "description", "is_active"], "keys": ["PRIMARY(id)", "UNIQUE(role_name)"], "fks": [], "approx_relations": "N:M with users via auth_user_roles"},
+    {"table": "auth_permissions", "columns": ["id", "permission_key", "description", "category"], "keys": ["PRIMARY(id)", "UNIQUE(permission_key)"], "fks": [], "approx_relations": "N:M with roles"},
+    {"table": "feed_events", "columns": ["id", "event_type", "title", "metadata", "created_at"], "keys": ["PRIMARY(id)", "INDEX(event_type)", "INDEX(created_at)"], "fks": [], "approx_relations": "core events table"},
+    {"table": "cis_system_config", "columns": ["id", "config_key", "config_value", "data_type", "is_editable"], "keys": ["PRIMARY(id)", "UNIQUE(config_key)"], "fks": [], "approx_relations": "configuration management"}
+  ],
+  "quality_metrics": {
+    "php_version": "8.3+",
+    "psr12_compliance": "partial",
+    "strict_types": true,
+    "test_coverage": "unknown",
+    "security_score": "good"
+  }
+}
